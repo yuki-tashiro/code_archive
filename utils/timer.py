@@ -36,3 +36,30 @@ def timer(name:str, slack:bool=False):
     delta = math.fabs(delta)
 
     print(f"<< {name} >> {m1:.1f}GB({sign}{delta:.1f}GB):{time.time() - t0:.1f}sec")
+
+
+"""# 時間の設定"""
+import datetime
+import pytz
+
+def get_current_time(region: str) -> str:
+    """
+    指定された地域の現在の日時を取得します。
+    使い方：f("{current_time}")などで名前につける
+    current_time = get_current_time('Germany')  # 'Japan', 'Germany'
+    output: '20240930_215104'
+    """
+    if region == 'Japan':
+        timezone = pytz.timezone('Asia/Tokyo')
+    elif region == 'Germany':
+        timezone = pytz.timezone('Europe/Berlin')
+    else:
+        raise ValueError("Unsupported region. Please choose 'Japan' or 'Germany' or somewhere.")
+
+    current_time = datetime.datetime.now(timezone).strftime("%Y%m%d_%H%M%S")
+
+    return current_time
+
+current_time = get_current_time('Japan')
+
+
