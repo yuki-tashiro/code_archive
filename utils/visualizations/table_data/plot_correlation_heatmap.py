@@ -2,7 +2,11 @@ import pandas as pd
 import seaborn as sns
 from matplotlib import pyplot as plt
 import numpy as np
-import japanize_matplotlib # !pip install japanize_matplotlib -q
+import japanize_matplotlib 
+
+"""
+!pip install japanize_matplotlib -q
+"""
 
 
 def plot_correlation_heatmap(df, df_cols, col_desc=None, title="Correlation Matrix", cmap='coolwarm'):
