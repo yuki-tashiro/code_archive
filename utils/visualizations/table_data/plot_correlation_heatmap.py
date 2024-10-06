@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 import japanize_matplotlib 
 
-"""
+"""_summary_
 !pip install japanize_matplotlib -q
 """
 
