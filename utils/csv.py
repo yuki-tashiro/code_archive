@@ -24,6 +24,10 @@ import pandas as pd
 import random
 import os
 
+# エクセルファイルの読み込み
+excel_path = './example.xlsx'
+df = pd.read_excel(excel_path, sheet_name = 'Math1A24', header=None)
+
 # 乱数のシードを設定
 np.random.seed(1234)
 random.seed(1234)

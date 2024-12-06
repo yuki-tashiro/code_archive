@@ -89,3 +89,27 @@ def calculate_zip_size(zip_path):
 zip_path = "/content/drive/MyDrive/MatsuoLab/SLab/data/WESAD/WESAD.zip"
 size_mb, size_gb = calculate_zip_size(zip_path)
 print(f"ZIPファイルの総データ量: {size_mb:.2f} MB, {size_gb:.2f} GB")
+
+
+# モデル(.pth)ダウンロード
+import gdown
+
+# ref: https://drive.usercontent.google.com/download?id=18Zed-TUTsmr2zc5CHUWd5Tu13nb6vq6z&authuser=0
+url = 'https://drive.google.com/uc?id=18Zed-TUTsmr2zc5CHUWd5Tu13nb6vq6z'
+output = '/content/MedSAM/work_dir/LiteMedSAM/lite_medsam.pth'  # 保存先のパスとファイル名
+gdown.download(url, output, quiet=False)
+
+
+# folderをダウンロード
+# https://drive.google.com/file/d/1l8ipIwINtT2kaJIZICEpnJAw0t6gCSpJ/view?usp=drive_link
+url = 'https://drive.google.com/uc?id=1l8ipIwINtT2kaJIZICEpnJAw0t6gCSpJ'
+output = '/content/drive/MyDrive/CVPR_MedSAM/MedSAM/data/Dermoscopy.zip'
+
+gdown.download(url, output, quiet=False)
+print("ダウンロード完了")
+!unzip /content/drive/MyDrive/CVPR_MedSAM/MedSAM/data/Dermoscopy.zip -d /content/drive/MyDrive/CVPR_MedSAM/MedSAM/data
+
+
+
+
+
