@@ -8,13 +8,16 @@ df
 
 def plot_histograms_with_kde(df, cols, target, bins=100):
     """
-    指定された列のヒストグラムと分布ライン（KDE）を作成します。
+    指定された列のヒストグラムとカーネル密度推定（KDE）ラインを作成します。
 
-    パラメータ:
-    df (pd.DataFrame): データを含むデータフレーム。
-    cols (list): ヒストグラムを作成する列のリスト。
-    target (str): ターゲット列の名前。
-    bins (int): ヒストグラムのビンの数。
+    Args:
+        df (pd.DataFrame): データを含むデータフレーム。
+        cols (list): ヒストグラムを作成する列のリスト。
+        target (str): ターゲット列の名前。
+        bins (int): ヒストグラムのビンの数。
+
+    Returns:
+        None: この関数はプロットを表示するだけで、値を返しません。
     """
     # ターゲットのユニークな値を取得
     target_values = df[target].unique()
