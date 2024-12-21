@@ -8,7 +8,7 @@ import os
 
 def directory_image_paths(directory, extensions = '.png'):
     """
-    指定されたディレクトリ内の指定された拡張子の画像ファイルのパスのリストを返します。\
+    指定されたディレクトリ内の指定された拡張子の画像ファイルのパスのリストを返します。
     """
     return [os.path.join(directory, filename) for filename in os.listdir(directory) if filename.endswith(extensions)]
 
