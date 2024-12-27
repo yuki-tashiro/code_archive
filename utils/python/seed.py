@@ -3,12 +3,7 @@ import random
 import os
 import numpy as np
 import torch
-""" # 使用方法
-from types import SimpleNamespace
-config = SimpleNamespace()
-config.seed = 42
-seed_everything(config.seed)
-"""
+
 
 def seed_everything(seed:int==42, gpu=True):
     """
