@@ -29,6 +29,11 @@ def copy_and_rename_files(source_folder, destination_folder, old_str, new_str):
         old_str (str): ファイル名で置き換えたい文字列
         new_str (str): ファイル名で置き換える文字列
     """
+    # コピー先フォルダが既に存在している場合、処理を終了
+    if os.path.exists(destination_folder):
+        print(f"フォルダが既に存在しています: {destination_folder}")
+        return
+
     # フォルダを丸ごとコピー
     shutil.copytree(source_folder, destination_folder, dirs_exist_ok=True, ignore=shutil.ignore_patterns('.*', 'wandb'))
     print(f"フォルダがコピーされました: {destination_folder}")
@@ -49,8 +54,8 @@ def copy_and_rename_files(source_folder, destination_folder, old_str, new_str):
 
 
 # 使用例
-old = '003'
-new = '004'
+old = '004'
+new = '005'
 source_folder = f"/content/drive/MyDrive/MatsuoLab/SLab/yokoi/code/exp_{old}"
 destination_folder = f"/content/drive/MyDrive/MatsuoLab/SLab/yokoi/code/exp_{new}"
 
