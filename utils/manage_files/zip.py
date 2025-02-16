@@ -22,6 +22,13 @@ target_dir = "./第5回日本眼科AI学会総会 眼科AIコンテスト"
 # 関数を呼び出してZIPファイルを作成
 zip_directory(zip_path, target_dir)
 
+
+#######################################################################################################################
+# zipに変換するコード(遅い)
+import shutil
+
+shutil.make_archive(base_name = '/content/drive/MyDrive/BFE_Lab_2025_0214', format='zip', root_dir='/content/drive/MyDrive/BFE_Lab')
+
 #######################################################################################################################
 
 import os
