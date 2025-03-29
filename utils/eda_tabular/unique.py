@@ -38,7 +38,7 @@ def print_unique_values(df, df_cols=None):
         col_dict = df[col].value_counts(dropna=False)
         print(col_dict)
         col_unique = df[col].unique()
-        
+
     return col_unique
 
 
