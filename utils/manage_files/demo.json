@@ -1,0 +1,207 @@
+
+yukitashiro@m3mba Library % du -h -d 1
+244K    ./Receipts
+du: ./Application Support/CallHistoryTransactions: Operation not permitted
+du: ./Application Support/CloudDocs: Operation not permitted
+du: ./Application Support/com.apple.sharedfilelist: Operation not permitted
+du: ./Application Support/Knowledge: Operation not permitted
+du: ./Application Support/com.apple.TCC: Operation not permitted
+du: ./Application Support/FileProvider: Operation not permitted
+du: ./Application Support/AddressBook: Operation not permitted
+du: ./Application Support/FaceTime: Operation not permitted
+du: ./Application Support/DifferentialPrivacy: Operation not permitted
+du: ./Application Support/com.apple.avfoundation/Frecents: Operation not permitted
+du: ./Application Support/CallHistoryDB: Operation not permitted
+ 25G    ./Application Support
+du: ./Assistant/SiriVocabulary: Operation not permitted
+ 10M    ./Assistant
+du: ./Daemon Containers: Operation not permitted
+1.0M    ./com.apple.appleaccountd
+du: ./Autosave Information: Operation not permitted
+692K    ./Saved Application State
+du: ./IdentityServices: Operation not permitted
+8.3M    ./WebKit
+du: ./CloudStorage/GoogleDrive-yuki.tashiro.ito@gmail.com/.tmp: Permission denied
+1.7M    ./CloudStorage
+du: ./Calendars: Operation not permitted
+ 51M    ./Preferences
+8.0K    ./studentd
+976K    ./Stickers
+  0B    ./PrivateCloudCompute
+  0B    ./PDF Services
+  0B    ./Staging
+du: ./Messages: Operation not permitted
+4.0K    ./Spotlight
+du: ./HomeKit: Operation not permitted
+ 12K    ./DES
+ 50M    ./Keychains
+du: ./Sharing: Operation not permitted
+  0B    ./ColorPickers
+4.0K    ./ColorSync
+260K    ./Application Scripts
+  0B    ./Assistants
+du: ./com.apple.aiml.instrumentation: Operation not permitted
+ 68K    ./Translation
+  0B    ./NGL
+du: ./Mail: Operation not permitted
+du: ./Trial: Operation not permitted
+  0B    ./Compositions
+  0B    ./GameKit
+ 13M    ./Google
+460K    ./LanguageModeling
+  0B    ./Microsoft
+ 24K    ./PPM
+  0B    ./Favorites
+112K    ./Contacts
+6.9M    ./Passes
+8.0K    ./ResponseKit
+144K    ./homeenergyd
+  0B    ./Workflows
+du: ./AppleMediaServices: Operation not permitted
+392K    ./com.apple.icloud.searchpartyd
+4.0K    ./DataAccess
+  0B    ./SafariSandboxBroker
+ 28K    ./FontCollections
+  0B    ./Speech
+  0B    ./Sounds
+du: ./DuetExpertCenter: Operation not permitted
+117M    ./HTTPStorages
+208K    ./com.apple.internal.ck
+  0B    ./Printers
+  0B    ./SyncedPreferences
+8.0K    ./Audio
+  0B    ./Keyboard Layouts
+ 36K    ./DataDeliveryServices
+1.1M    ./com.apple.AppleMediaServices
+342M    ./Logs
+  0B    ./PhotoshopCrashes
+  0B    ./Internet Plug-Ins
+800K    ./FrontBoard
+  0B    ./News
+du: ./Accounts: Operation not permitted
+du: ./Safari: Operation not permitted
+  0B    ./Colors
+du: ./Biome: Operation not permitted
+du: ./IntelligencePlatform: Operation not permitted
+  0B    ./PreferencePanes
+  0B    ./Scripts
+du: ./Shortcuts: Operation not permitted
+4.0K    ./DeepL
+608K    ./UnifiedAssetFramework
+363G    ./Mobile Documents
+6.5M    ./Finance
+du: ./Suggestions: Operation not permitted
+du: ./Weather: Operation not permitted
+ 16K    ./LaunchAgents
+ 20K    ./com.apple.bluetoothuser
+du: ./Group Containers/group.com.apple.stocks-news: Operation not permitted
+du: ./Group Containers/group.com.apple.photolibraryd.private: Operation not permitted
+du: ./Group Containers/group.com.apple.siri.inference: Operation not permitted
+du: ./Group Containers/group.com.apple.swtransparency: Operation not permitted
+du: ./Group Containers/group.com.apple.coreservices.useractivityd: Operation not permitted
+du: ./Group Containers/group.com.apple.accessibility.voicebanking: Operation not permitted
+du: ./Group Containers/group.com.apple.siri.referenceResolution: Operation not permitted
+du: ./Group Containers/group.com.apple.stocks: Operation not permitted
+du: ./Group Containers/group.com.apple.usernoted: Operation not permitted
+du: ./Group Containers/group.com.apple.VoiceMemos.shared: Operation not permitted
+du: ./Group Containers/group.com.apple.secure-control-center-preferences: Operation not permitted
+du: ./Group Containers/group.com.apple.chronod: Operation not permitted
+du: ./Group Containers/com.apple.MailPersonaStorage: Operation not permitted
+du: ./Group Containers/group.com.apple.private.translation: Operation not permitted
+du: ./Group Containers/group.com.apple.appstoreagent: Operation not permitted
+du: ./Group Containers/group.com.apple.portrait.BackgroundReplacement: Operation not permitted
+du: ./Group Containers/group.com.apple.amsondevicestoraged: Operation not permitted
+du: ./Group Containers/group.com.apple.SiriTTS: Operation not permitted
+du: ./Group Containers/group.com.apple.notes.import: Operation not permitted
+du: ./Group Containers/group.com.apple.calendar: Operation not permitted
+du: ./Group Containers/group.com.apple.ip.redirects: Operation not permitted
+du: ./Group Containers/group.com.apple.siri.userfeedbacklearning: Operation not permitted
+du: ./Group Containers/group.com.apple.gamecenter: Operation not permitted
+du: ./Group Containers/group.com.apple.tips: Operation not permitted
+du: ./Group Containers/group.com.apple.spotlight: Operation not permitted
+du: ./Group Containers/group.com.apple.studentd: Operation not permitted
+du: ./Group Containers/group.com.apple.ManagedSettings: Operation not permitted
+du: ./Group Containers/group.com.apple.sharingd: Operation not permitted
+du: ./Group Containers/group.com.apple.printtool: Operation not permitted
+du: ./Group Containers/group.com.apple.news: Operation not permitted
+du: ./Group Containers/group.com.apple.scopedbookmarkagent: Operation not permitted
+du: ./Group Containers/group.com.apple.weather: Operation not permitted
+du: ./Group Containers/com.apple.systempreferences.cache: Operation not permitted
+du: ./Group Containers/group.com.apple.feedbacklogger: Operation not permitted
+du: ./Group Containers/group.com.apple.siri.remembers: Operation not permitted
+du: ./Group Containers/group.com.apple.notes: Operation not permitted
+du: ./Group Containers/group.com.apple.UserNotifications: Operation not permitted
+du: ./Group Containers/group.com.apple.tipsnext: Operation not permitted
+du: ./Group Containers/group.com.apple.Safari.SandboxBroker: Operation not permitted
+du: ./Group Containers/group.com.apple.transparency: Operation not permitted
+du: ./Group Containers/group.com.apple.reminders: Operation not permitted
+du: ./Group Containers/group.com.apple.mail: Operation not permitted
+du: ./Group Containers/com.apple.bird: Operation not permitted
+du: ./Group Containers/group.com.apple.DeviceActivity: Operation not permitted
+du: ./Group Containers/group.com.apple.replayd: Operation not permitted
+du: ./Group Containers/com.apple.Home.group: Operation not permitted
+du: ./Group Containers/group.com.apple.iCloudDrive: Operation not permitted
+du: ./Group Containers/group.com.apple.energykit: Operation not permitted
+du: ./Group Containers/com.apple.PreviewLegacySignaturesConversion: Operation not permitted
+du: ./Group Containers/group.com.apple.notesdebug: Operation not permitted
+du: ./Group Containers/group.com.apple.replicatord: Operation not permitted
+du: ./Group Containers/group.com.apple.Photos.PhotosFileProvider: Operation not permitted
+du: ./Group Containers/group.com.apple.AppleSpell: Operation not permitted
+du: ./Group Containers/group.com.apple.mlhost: Operation not permitted
+du: ./Group Containers/group.com.apple.PegasusConfiguration: Operation not permitted
+du: ./Group Containers/group.com.apple.shortcuts: Operation not permitted
+du: ./Group Containers/com.apple.MessagesLegacyTransferArchive: Operation not permitted
+4.6G    ./Group Containers
+272K    ./Dictionaries
+du: ./Containers/com.apple.VoiceMemos: Operation not permitted
+du: ./Containers/com.apple.archiveutility: Operation not permitted
+du: ./Containers/com.apple.Maps/Data/Maps: Operation not permitted
+du: ./Containers/com.apple.Home: Operation not permitted
+du: ./Containers/com.apple.Safari: Operation not permitted
+du: ./Containers/com.apple.CloudDocs.MobileDocumentsFileProvider: Operation not permitted
+du: ./Containers/com.apple.mail: Operation not permitted
+du: ./Containers/com.apple.MobileSMS: Operation not permitted
+du: ./Containers/com.apple.Notes: Operation not permitted
+du: ./Containers/com.apple.corerecents.recentsd/Data/Library/Recents: Operation not permitted
+du: ./Containers/com.apple.stocks: Operation not permitted
+ 72G    ./Containers
+du: ./ContainerManager: Operation not permitted
+  0B    ./ScreenRecordings
+8.0K    ./Intents
+du: ./PersonalizationPortrait: Operation not permitted
+du: ./Photos: Operation not permitted
+  0B    ./Fonts
+5.0M    ./Accessibility
+4.8M    ./KeyboardServices
+du: ./Metadata/CoreSpotlight: Operation not permitted
+du: ./Metadata/com.apple.IntelligentSuggestions: Operation not permitted
+ 24K    ./Metadata
+  0B    ./Screen Savers
+520K    ./Jupyter
+8.0K    ./CallServices
+4.0K    ./Spelling
+ 24K    ./SafariSafeBrowsing
+4.0K    ./Reminders
+  0B    ./FinanceBackup
+  0B    ./Input Methods
+du: ./Cookies: Operation not permitted
+  0B    ./Services
+ 72K    ./com.apple.bluetooth.services.cloud
+3.9M    ./com.apple.iTunesCloud
+204K    ./Keyboard
+du: ./CoreFollowUp: Operation not permitted
+du: ./StatusKit: Operation not permitted
+du: ./DoNotDisturb: Operation not permitted
+4.0K    ./LockdownMode
+du: ./Caches/com.apple.HomeKit: Operation not permitted
+du: ./Caches/CloudKit: Operation not permitted
+du: ./Caches/com.apple.Safari: Operation not permitted
+du: ./Caches/com.apple.containermanagerd: Operation not permitted
+du: ./Caches/FamilyCircle: Operation not permitted
+du: ./Caches/com.apple.homed: Operation not permitted
+du: ./Caches/com.apple.ap.adprivacyd: Operation not permitted
+5.9G    ./Caches
+472G    .
+yukitashiro@m3mba Library % cd ./Mobile Documents
+cd: string not in pwd: ./Mobile
+yukitashiro@m3mba Library % 
