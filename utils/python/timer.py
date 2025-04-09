@@ -42,7 +42,7 @@ def timer(name:str, slack:bool=False):
 import datetime
 import pytz
 
-def get_current_time(region: str) -> str:
+def get_current_time(region: str="Japan") -> str:
     """
     指定された地域の現在の日時を取得します。
     使い方：f("{current_time}")などで名前につける
@@ -60,6 +60,6 @@ def get_current_time(region: str) -> str:
 
     return current_time
 
-current_time = get_current_time('Japan')
+current_time = get_current_time()
 
 
