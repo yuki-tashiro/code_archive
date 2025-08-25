@@ -25,7 +25,16 @@
 ```
 .
 |-- utils
-|   `-- visualizations ["plt/seabornでの可視化を入れている"]
+|   |-- eda_image ["画像のEDAを入れている"]
+|   |-- eda_pdf ["PDFのEDAを入れている"]
+|   |-- eda_tabular ["表形式データのEDAを入れている"]
+|   |-- eda_text ["テキストのEDAを入れている"]
+|   |-- manage_files ["ファイル操作を入れている"]
+|   |   |-- copy_paste_dir_v2_with_shell.py ["ディレクトリのコピペを行う"]
+|   |   |-- copy_paste_dir_v2_with_shell.sh ["ディレクトリのコピペを行うshellスクリプト"]
+|   |-- 
+|   |-- 
+|   |-- visualizations ["plt/seabornでの可視化を入れている"]
 |       |-- table_data ["plt/seabornでの単純な可視化がある"]
 |       |   |-- 
 |       |   `-- 
