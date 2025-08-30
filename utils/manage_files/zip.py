@@ -30,6 +30,84 @@ import shutil
 shutil.make_archive(base_name = '/content/drive/MyDrive/BFE_Lab_2025_0214', format='zip', root_dir='/content/drive/MyDrive/BFE_Lab')
 
 #######################################################################################################################
+# urlからzipをダウンロードして解凍するコード(進捗と速度を表示)
+
+import os
+import requests
+import zipfile
+from pathlib import Path
+from tqdm import tqdm
+
+def download_and_extract_with_progress(url, save_path, extract=False):
+    """
+    指定されたURLからファイルをダウンロードし、進捗と速度をリアルタイムで表示します．
+    必要に応じて解凍も行います．
+
+    パラメータ:
+    url (str): ダウンロードするファイルのURL．
+    save_path (str): ファイルを保存するパス．
+    extract (bool): Trueの場合、ダウンロードしたファイルを解凍します．
+
+    使用例:
+    >>> url = "https://example.com/file.zip"
+    >>> save_path = "downloads/file.zip"
+    >>> download_and_extract_with_progress(url, save_path, extract=True)
+    """
+    # 保存先のディレクトリを作成
+    save_path = Path(save_path)
+    directory = save_path.parent
+    if not directory.exists():
+        directory.mkdir(parents=True)
+        print(f"ディレクトリを作成しました: {directory}")
+
+    response = requests.get(url, stream=True)
+    response.raise_for_status()  # ステータスコードが200番台でない場合は例外を発生させる
+
+    # ヘッダーから合計ファイルサイズを取得
+    total_size = int(response.headers.get('content-length', 0))
+
+    # チャンクサイズを定義
+    # chunk_size = 8192  # 8KB
+    chunk_size = 1024 * 1024  # 1MB
+
+    print(f"'{save_path.name}' をダウンロード中...")
+    # tqdmを使用してプログレスバーとダウンロード情報を表示
+    with open(save_path, "wb") as file, tqdm(
+        desc=save_path.name,
+        total=total_size,
+        unit='B',
+        unit_scale=True,
+        unit_divisor=1024,  # KB, MB の単位に自動変換
+        ncols=100, # プログレスバーの幅
+    ) as bar:
+        for chunk in response.iter_content(chunk_size=chunk_size):
+            if chunk:  # keep-aliveな新しいチャンクを除外
+                size = file.write(chunk)
+                bar.update(size)  # プログレスバーを更新
+
+    print("ダウンロードが完了しました．")
+
+    # 解凍する場合
+    if extract and save_path.suffix == '.zip':
+        print("ファイルを解凍中...")
+        with zipfile.ZipFile(save_path, 'r') as zip_ref:
+            # Zipファイル内のファイルリストでプログレスバーを作成
+            file_list = zip_ref.infolist()
+            extract_path = str(save_path.parent)
+            with tqdm(total=len(file_list), desc="解凍中", ncols=100) as pbar:
+                for member in file_list:
+                    zip_ref.extract(member, extract_path)
+                    pbar.update(1)
+        print("解凍が完了しました．")
+
+
+# --- 使用例 ---
+url = "https://uni-siegen.sciebo.de/s/HGdUkoNlW1Ub0Gx/download"
+save_path = "/content/drive/MyDrive/dataset/data/WESAD/WESAD.zip"
+download_and_extract_with_progress(url, save_path, extract=True)
+
+
+#######################################################################################################################
 
 import os
 import requests
