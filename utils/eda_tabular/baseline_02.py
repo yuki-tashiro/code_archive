@@ -34,27 +34,37 @@ def convert_object_columns(df):
         term_map = {'36 months': 36, '60 months': 60}
         df['term'] = df['term'].map(term_map).astype(int)
     if 'grade' in df:
-        grade_map = {g: i+1 for i, g in enumerate(['A','B','C'])}
+        grade_map = {g: i+1 for i, g in enumerate(['A','B','C','D','E','F','G'])}
         df['grade'] = df['grade'].map(grade_map).astype(int)
     if 'emp_length' in df:
-        emp_map = {'< 1 year':0,'1 year':1,'2 years':2}
+        emp_map = {'< 1 year':0,'1 year':1,'2 years':2,'3 years':3,'4 years':4,
+                   '5 years':5,'6 years':6,'7 years':7,'8 years':8,'9 years':9,'10+ years':10}
         df['emp_length'] = df['emp_length'].map(emp_map).fillna(-1).astype(float)
 
     # 特徴量の追加
-    # col_name_1 の対数変換（外れ値緩和）
-    df['annual_inc_log'] = np.log1p(df['col_name_1']).astype(float)
+    # annual_inc の対数変換（外れ値緩和）
+    df['annual_inc_log'] = np.log1p(df['annual_inc']).astype(float)
 
+    # 比率・交互作用系
+    # 年収に対する年間返済額比率：installment（月額返済）×12 ÷ annual_inc
+    df['annual_installment_amt'] = df['installment'] * 12
+    df['debt_to_income_ratio'] = df['annual_installment_amt'] / (df['annual_inc'] + 1e-6)
+
+    # 「貸出金額あたりの利息負担感」：int_rate_float × loan_amnt
+    df['interest_burden'] = df['int_rate'] * df['loan_amnt']
+    # “月々の返済額 × 返済月数” で、期間中に返す総額
+    df['total_payment'] = df['installment'] * df['term']
 
     # “総支払額 － 借入額” で、期間中に支払う利息部分
     df['total_interest'] = df['total_payment'] - df['loan_amnt']
 
     # 年収差額（引き算）
-    df['income_minus_annual_installment'] = df['col_name_1'] - df['annual_installment_amt']
+    df['income_minus_annual_installment'] = df['annual_inc'] - df['annual_installment_amt']
     # 貸出額／年収比率（割り算）
-    df['loan_to_income_ratio'] = df['loan_amnt'] / (df['col_name_1'] + 1e-6)
+    df['loan_to_income_ratio'] = df['loan_amnt'] / (df['annual_inc'] + 1e-6)
 
     # 月収に対する返済比率（割り算）
-    df['installment_to_monthly_inc'] = df['installment'] / (df['col_name_1'] / 12 + 1e-6)
+    df['installment_to_monthly_inc'] = df['installment'] / (df['annual_inc'] / 12 + 1e-6)
     # 金利×借入額による利息負担感（掛け算）
     # int_rate がパーセント（例：11.53）なら 100 で割って実利率を適用
     df['interest_burden'] = (df['int_rate'] / 100) * df['loan_amnt']
@@ -135,59 +145,20 @@ def main():
         )
 
     # --- モデル定義 ---
-    # models = [
-    #     ("LR",  LogisticRegression(max_iter=5000, tol=1e-4, solver='saga', random_state=42)),
-    #     ("LR2", LogisticRegression(max_iter=10000, tol=1e-2, solver='saga', random_state=42, C=0.1)),
-    #     ("LR3", LogisticRegression(max_iter=10000, tol=1e-2, solver='sag', random_state=42, C=0.01)),
-    #     ("LR4", LogisticRegression(max_iter=1000, tol=1e-2, solver='saga', random_state=42, C=0.001)),
-    #     ("XGB", XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42)),
-    #     ("LGBM",LGBMClassifier(random_state=42)),
-    #     ("LGBM2", LGBMClassifier(random_state=42, n_estimators=10000, learning_rate=0.1, verbose=0)),
-    #     ("LGBM3", LGBMClassifier(random_state=42, n_estimators=10000, learning_rate=0.1, verbose=0, max_depth=7)),
-    #     # ("LGBM", LGBMClassifier(random_state=42, n_estimators=10000, learning_rate=0.1, verbose=0, max_depth=7)),
-    #     ("CatB",CatBoostClassifier(verbose=0, random_state=42)),
-    #     ("CatB2", CatBoostClassifier(verbose=0, random_state=42, n_estimators=10000, learning_rate=0.1)),
-    #     ("MLP",MLPClassifier( hidden_layer_sizes=(100,50), activation='relu', solver='adam', alpha=1e-4, batch_size=32, learning_rate='adaptive', learning_rate_init=1e-3, max_iter=200, random_state=42, early_stopping=True)),
-    # ]
-
-    # --- 追加：試す乱数シードをリストで定義 ---
-    random_states = [0, 42, 99]
-
-    # --- 元のモデル定義を「クラス＋パラメータ辞書」の形式でまとめる ---
-    base_model_configs = [
-        # 名前, クラス, ↓その他の固定パラメータ（random_state は入れない）
-        ("LR",    LogisticRegression, {"max_iter":5000, "tol":1e-4, "solver":"saga"}),
-        ("LR2",   LogisticRegression, {"max_iter":1000, "tol":1e-2, "solver":"saga", "C":0.1}),
-        ("LR3",   LogisticRegression, {"max_iter":1000, "tol":1e-2, "solver":"sag",  "C":0.01}),
-        ("LR4",   LogisticRegression, {"max_iter":1000,  "tol":1e-2, "solver":"saga", "C":0.001}),
-        ("XGB",   XGBClassifier,      {"use_label_encoder":False, "eval_metric":"logloss"}),
-        ("LGBM",  LGBMClassifier,     {}),
-        ("LGBM2", LGBMClassifier,     {"n_estimators":1000, "learning_rate":0.1, "verbose":0}),
-        ("LGBM3", LGBMClassifier,     {"n_estimators":1000, "learning_rate":0.1, "verbose":0, "max_depth":7}),
-        ("CatB",  CatBoostClassifier, {"verbose":0}),
-        ("CatB2", CatBoostClassifier, {"verbose":0, "n_estimators":1000, "learning_rate":0.1}),
-        ("MLP",   MLPClassifier,      {
-            "hidden_layer_sizes":(100,50),
-            "activation":"relu",
-            "solver":"adam",
-            "alpha":1e-4,
-            "batch_size":32,
-            "learning_rate":"adaptive",
-            "learning_rate_init":1e-3,
-            "max_iter":200,
-            "early_stopping":True
-        }),
+    models = [
+        ("LR",  LogisticRegression(max_iter=5000, tol=1e-4, solver='saga', random_state=42)),
+        ("LR2", LogisticRegression(max_iter=10000, tol=1e-2, solver='saga', random_state=42, C=0.1)),
+        ("LR3", LogisticRegression(max_iter=10000, tol=1e-2, solver='sag', random_state=42, C=0.01)),
+        ("LR4", LogisticRegression(max_iter=1000, tol=1e-2, solver='saga', random_state=42, C=0.001)),
+        ("XGB", XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42)),
+        ("LGBM",LGBMClassifier(random_state=42)),
+        ("LGBM2", LGBMClassifier(random_state=42, n_estimators=1000, learning_rate=0.1, verbose=0)),
+        ("LGBM3", LGBMClassifier(random_state=42, n_estimators=1000, learning_rate=0.1, verbose=0, max_depth=7)),
+        # ("LGBM", LGBMClassifier(random_state=42, n_estimators=10000, learning_rate=0.1, verbose=0, max_depth=7)),
+        ("CatB",CatBoostClassifier(verbose=0, random_state=42)),
+        ("CatB2", CatBoostClassifier(verbose=0, random_state=42, n_estimators=1000, learning_rate=0.1)),
+        ("MLP",MLPClassifier( hidden_layer_sizes=(100,50), activation='relu', solver='adam', alpha=1e-4, batch_size=32, learning_rate='adaptive', learning_rate_init=1e-3, max_iter=200, random_state=42, early_stopping=True)),
     ]
-
-    # --- シードをくり返し注入して models リストを拡張 ---
-    models = []
-    for name, ModelClass, kwargs in base_model_configs:
-        for rs in random_states:
-            params = {**kwargs, "random_state": rs}
-            models.append(
-                (f"{name}_rs{rs}", ModelClass(**params))
-            )
-
 
     # --- 各モデルの学習と評価 ---
     preds = []
